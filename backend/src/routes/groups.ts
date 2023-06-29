@@ -1,17 +1,17 @@
-import express from "express";
-import { eq } from "drizzle-orm";
+import express from 'express';
+import { eq } from 'drizzle-orm';
 
-import db from "../db/connect";
-import { Groups, groupmembers, groups, users } from "../db/schema";
+import db from '../db/connect';
+import { Groups, groupmembers, groups, users } from '../db/schema';
 
 const router = express.Router();
 
-router.get("/", async (_request, response) => {
+router.get('/', async (_request, response) => {
 	const allGroups: Groups[] = await db.select().from(groups);
 	response.json(allGroups);
 });
 
-router.get("/:id", async (request, response) => {
+router.get('/:id', async (request, response) => {
 	const id = Number(request.params.id);
 	const group: Groups[] = await db
 		.select()
@@ -20,7 +20,7 @@ router.get("/:id", async (request, response) => {
 	response.json(group);
 });
 
-router.get("/:id/members", async (request, response) => {
+router.get('/:id/members', async (request, response) => {
 	const id = Number(request.params.id);
 
 	const group = await db.select().from(groups).where(eq(groups.id, id));
