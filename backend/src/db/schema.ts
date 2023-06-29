@@ -19,6 +19,7 @@ export const groupmembers = pgTable('groupmembers', {
 	group_id: integer('group_id').references(() => groups.id),
 });
 
-export type User = InferModel<typeof users, 'select'>;
+type UserData = InferModel<typeof users, 'select'>;
+export type User = Omit<UserData, 'password'>;
 export type Groups = InferModel<typeof groups, 'select'>;
 export type Members = InferModel<typeof groupmembers, 'select'>;
