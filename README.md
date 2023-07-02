@@ -41,4 +41,5 @@ Some initial features. These will most likely change as the project progresses
 | 23.6. | 2     | Setting up the database, getting familiar with DrizzleORM     |
 | 23.6. | 1     | Fixed drizzle connection, implemente first routes             |
 | 29.6. | 0.5   | Worked on groups api route                                    |
-| Total | 6     |                                                               |
+| 2.7.  | 1     | BucketList api route configured, updated db schema            |
+| Total | 7     |                                                               |
