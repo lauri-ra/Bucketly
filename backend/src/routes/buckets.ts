@@ -14,28 +14,34 @@ router.get('/', async (_request, response) => {
 router.get('/:bucketId', async (request, response) => {
 	const bucketId = Number(request.params.bucketId);
 
-	const bucketList: Bucket[] = await db
+	const result: Bucket[] = await db
 		.select()
 		.from(bucketlists)
 		.where(eq(bucketlists.id, bucketId));
 
-	const goalList: Goal[] = await db
-		.select({
-			id: goals.id,
-			name: goals.name,
-			status: goals.status,
-			bucket_id: goals.bucket_id,
-		})
-		.from(bucketlists)
-		.innerJoin(goals, eq(bucketlists.id, goals.bucket_id))
-		.where(eq(bucketlists.id, bucketId));
+	response.json(result[0]);
+});
 
-	const result = {
-		bucket: bucketList[0],
-		goals: goalList,
-	};
+router.get('/:bucketId/goals', async (request, response) => {
+	const bucketId = Number(request.params.bucketId);
+
+	const result: Goal[] = await db
+		.select()
+		.from(goals)
+		.where(eq(goals.bucket_id, bucketId));
 
 	response.json(result);
+});
+
+router.get('/:bucketId/goals/:goalId', async (request, response) => {
+	const goalId = Number(request.params.goalId);
+
+	const result: Goal[] = await db
+		.select()
+		.from(goals)
+		.where(eq(goals.id, goalId));
+
+	response.json(result[0]);
 });
 
 export default router;

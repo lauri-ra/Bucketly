@@ -42,4 +42,5 @@ Some initial features. These will most likely change as the project progresses
 | 23.6. | 1     | Fixed drizzle connection, implemente first routes             |
 | 29.6. | 0.5   | Worked on groups api route                                    |
 | 2.7.  | 1     | BucketList api route configured, updated db schema            |
-| Total | 7     |                                                               |
+| 2.7.  | 0.5   | Refactored api routes to more simpler stucture                |
+| Total | 7.5   |                                                               |

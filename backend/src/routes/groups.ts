@@ -23,12 +23,7 @@ router.get('/:id', async (request, response) => {
 router.get('/:id/members', async (request, response) => {
 	const id = Number(request.params.id);
 
-	const group: Groups[] = await db
-		.select()
-		.from(groups)
-		.where(eq(groups.id, id));
-
-	const members: User[] = await db
+	const result: User[] = await db
 		.select({
 			id: users.id,
 			username: users.username,
@@ -38,11 +33,6 @@ router.get('/:id/members', async (request, response) => {
 		.from(groupmembers)
 		.innerJoin(users, eq(groupmembers.user_id, users.id))
 		.where(eq(groupmembers.group_id, id));
-
-	const result = {
-		group: group[0],
-		members: members,
-	};
 
 	response.json(result);
 });
