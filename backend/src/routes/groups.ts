@@ -2,7 +2,7 @@ import express from 'express';
 import { eq } from 'drizzle-orm';
 
 import db from '../db/connect';
-import { Groups, User, groupmembers, groups, users } from '../db/schema';
+import { GroupUser, Groups, groupmembers, groups, users } from '../db/schema';
 
 const router = express.Router();
 
@@ -23,7 +23,7 @@ router.get('/:id', async (request, response) => {
 router.get('/:id/members', async (request, response) => {
 	const id = Number(request.params.id);
 
-	const result: User[] = await db
+	const result: GroupUser[] = await db
 		.select({
 			id: users.id,
 			username: users.username,
