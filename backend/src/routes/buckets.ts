@@ -100,4 +100,17 @@ router.post('/', async (request, response) => {
 	return response.status(201).json(newBucketList);
 });
 
+// Route for adding a goal to a bucket list
+router.post('/:bucketId/goals', async (request, response) => {
+	const body = request.body as Goal;
+
+	if (!body) {
+		return response.status(400).json({ error: 'Goal body missing content' });
+	}
+
+	const newGoal: Goal[] = await db.insert(goals).values(body).returning();
+
+	return response.status(201).json(newGoal);
+});
+
 export default router;

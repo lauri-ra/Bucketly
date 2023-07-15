@@ -2,13 +2,32 @@ import express from 'express';
 import { eq } from 'drizzle-orm';
 
 import db from '../db/connect';
-import { GroupUser, Groups, groupmembers, groups, users } from '../db/schema';
+import {
+	GroupUser,
+	Groups,
+	Members,
+	groupmembers,
+	groups,
+	users,
+} from '../db/schema';
 
 const router = express.Router();
 
 router.get('/', async (_request, response) => {
 	const allGroups: Groups[] = await db.select().from(groups);
 	response.json(allGroups);
+});
+
+router.post('/', async (request, response) => {
+	const body = request.body as Groups;
+
+	if (!body) {
+		return response.status(400).json({ error: 'Group body missing content' });
+	}
+
+	const newGroup = await db.insert(groups).values(body).returning();
+
+	return response.status(201).json(newGroup);
 });
 
 router.get('/:id', async (request, response) => {
@@ -35,6 +54,18 @@ router.get('/:id/members', async (request, response) => {
 		.where(eq(groupmembers.group_id, id));
 
 	response.json(result);
+});
+
+router.post('/:id/members', async (request, response) => {
+	const body = request.body as Members;
+
+	if (!body) {
+		return response.status(400).json({ error: 'Member body missing content' });
+	}
+
+	const addedUser = await db.insert(groupmembers).values(body).returning();
+
+	return response.status(201).json(addedUser);
 });
 
 export default router;

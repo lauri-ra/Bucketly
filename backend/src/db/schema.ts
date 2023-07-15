@@ -31,7 +31,9 @@ export const goals = pgTable('goals', {
 	id: serial('id').primaryKey(),
 	name: varchar('name', { length: 255 }).notNull(),
 	status: varchar('status', { length: 255 }).notNull(),
-	bucket_id: integer('bucket_id').references(() => bucketlists.id),
+	bucket_id: integer('bucket_id')
+		.references(() => bucketlists.id)
+		.notNull(),
 });
 
 export const tasks = pgTable('tasks', {

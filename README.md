@@ -34,16 +34,16 @@ Some initial features. These will most likely change as the project progresses
 
 ### Timetable
 
-| Day   | Hours | What did I do?                                                |
-| ----- | ----- | ------------------------------------------------------------- |
-| 21.6. | 2     | Planning project idea, features, structure, architecture & UI |
-| 22.6. | 0.5   | Intializing project structure, first commit                   |
-| 23.6. | 2     | Setting up the database, getting familiar with DrizzleORM     |
-| 23.6. | 1     | Fixed drizzle connection, implemente first routes             |
-| 29.6. | 0.5   | Worked on groups api route                                    |
-| 2.7.  | 1     | BucketList api route configured, updated db schema            |
-| 2.7.  | 0.5   | Refactored api routes to more simpler stucture                |
-| 14.7. | 1     | Started working on user auth & login                          |
-| 14.7. | 1     | Fixed login auth, post new user route added                   |
-| 16.7. | 1.5   | Updated buckets router, changes to database schema/structure  |
-| Total | 11    |                                                               |
+| Day   | Hours | What did I do?                                                         |
+| ----- | ----- | ---------------------------------------------------------------------- |
+| 21.6. | 2     | Planning project idea, features, structure, architecture & UI          |
+| 22.6. | 0.5   | Intializing project structure, first commit                            |
+| 23.6. | 2     | Setting up the database, getting familiar with DrizzleORM              |
+| 23.6. | 1     | Fixed drizzle connection, implemente first routes                      |
+| 29.6. | 0.5   | Worked on groups api route                                             |
+| 2.7.  | 1     | BucketList api route configured, updated db schema                     |
+| 2.7.  | 0.5   | Refactored api routes to more simpler stucture                         |
+| 14.7. | 1     | Started working on user auth & login                                   |
+| 14.7. | 1     | Fixed login auth, post new user route added                            |
+| 16.7. | 2     | Updated buckets & groups routers, changes to database schema/structure |
+| Total | 12    |                                                                        |
