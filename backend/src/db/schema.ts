@@ -20,22 +20,22 @@ export const groupmembers = pgTable('groupmembers', {
 });
 
 export const bucketlists = pgTable('bucketlists', {
-	id: integer('id').primaryKey(),
+	id: serial('id').primaryKey(),
 	name: varchar('name', { length: 255 }).notNull(),
-	description: varchar('name', { length: 255 }),
+	description: varchar('description', { length: 255 }),
 	user_id: integer('user_id').references(() => users.id),
 	group_id: integer('group_id').references(() => groups.id),
 });
 
 export const goals = pgTable('goals', {
-	id: integer('id').primaryKey(),
+	id: serial('id').primaryKey(),
 	name: varchar('name', { length: 255 }).notNull(),
 	status: varchar('status', { length: 255 }).notNull(),
 	bucket_id: integer('bucket_id').references(() => bucketlists.id),
 });
 
 export const tasks = pgTable('tasks', {
-	id: integer('id').primaryKey(),
+	id: serial('id').primaryKey(),
 	task: text('task').notNull(),
 	goal_id: integer('goal_id').references(() => goals.id),
 });

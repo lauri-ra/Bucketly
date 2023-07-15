@@ -45,4 +45,5 @@ Some initial features. These will most likely change as the project progresses
 | 2.7.  | 0.5   | Refactored api routes to more simpler stucture                |
 | 14.7. | 1     | Started working on user auth & login                          |
 | 14.7. | 1     | Fixed login auth, post new user route added                   |
-| Total | 9.5   |                                                               |
+| 16.7. | 1.5   | Updated buckets router, changes to database schema/structure  |
+| Total | 11    |                                                               |
