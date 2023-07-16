@@ -39,6 +39,14 @@ router.get('/:id', async (request, response) => {
 	response.json(group);
 });
 
+router.delete('/:id', async (request, response) => {
+	const id = Number(request.params.id);
+
+	await db.delete(groups).where(eq(groups.id, id));
+
+	response.status(204).end();
+});
+
 router.get('/:id/members', async (request, response) => {
 	const id = Number(request.params.id);
 
@@ -66,6 +74,21 @@ router.post('/:id/members', async (request, response) => {
 	const addedUser = await db.insert(groupmembers).values(body).returning();
 
 	return response.status(201).json(addedUser);
+});
+
+router.delete('/:id/members', async (request, response) => {
+	const body = request.body as Members;
+
+	if (!body) {
+		return response
+			.status(400)
+			.json({ error: 'Member data missing from body' });
+	}
+
+	const id = Number(body.user_id);
+	await db.delete(groupmembers).where(eq(groupmembers.user_id, id));
+
+	return response.status(204).end();
 });
 
 export default router;
