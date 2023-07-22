@@ -7,7 +7,6 @@ import { eq } from 'drizzle-orm';
 // This custom request type has optional values so that the middleware can
 // be applied to express app routes
 interface AuthRequest extends Request {
-	token?: string;
 	user?: User;
 }
 
@@ -18,7 +17,11 @@ export const authMiddleware = async (
 ) => {
 	const token = request.header('Authorization')?.replace('Bearer ', '');
 
-	if (token) {
+	if (!token) {
+		return response.status(401).json({ error: 'Token missing or invalid' });
+	}
+
+	try {
 		const decoded = jwt.verify(
 			token,
 			process.env.JWT_SECRET as string
@@ -27,11 +30,15 @@ export const authMiddleware = async (
 		const userId = Number(decoded.userId);
 		const user = await db.select().from(users).where(eq(users.id, userId));
 
+		if (!user[0]) {
+			return response.status(401).json({ error: 'Request user not found' });
+		}
+
 		request.user = user[0];
 
 		next();
-	} else {
-		return response.status(401).json({ error: 'Token missing or invalid' });
+	} catch (error) {
+		return response.status(401).json({ error: 'Token invalid or expired' });
 	}
 
 	return;
