@@ -33,7 +33,10 @@ router.post('/', async (request, response) => {
 			return response.status(401).json({ error: 'Invalid password' });
 		}
 
-		const token = jwt.sign({ userId: user.id }, 'your-secret-key');
+		const token = jwt.sign(
+			{ userId: user.id },
+			process.env.JWT_SECRET as string
+		);
 
 		return response.json({ token });
 	} catch (error) {

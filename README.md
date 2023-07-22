@@ -47,4 +47,5 @@ Some initial features. These will most likely change as the project progresses
 |       | 1     | Fixed login auth, post new user route added                            |
 | 16.7. | 2     | Updated buckets & groups routers, changes to database schema/structure |
 |       | 0.5   | New routes to groups router                                            |
-| Total | 12.5  |                                                                        |
+| 22.7  | 1     | Worked and tested auth middleware                                      |
+| Total | 13.5  |                                                                        |
