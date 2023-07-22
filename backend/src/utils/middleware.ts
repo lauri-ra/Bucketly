@@ -11,19 +11,22 @@ interface AuthRequest extends Request {
 	user?: User;
 }
 
-const authMiddleware = async (
+export const authMiddleware = async (
 	request: AuthRequest,
 	response: Response,
 	next: NextFunction
 ) => {
-	if (request.token) {
+	const token = request.header('Authorization')?.replace('Bearer ', '');
+
+	if (token) {
 		const decoded = jwt.verify(
-			request.token,
+			token,
 			process.env.JWT_SECRET as string
 		) as JwtPayload;
 
 		const userId = Number(decoded.userId);
 		const user = await db.select().from(users).where(eq(users.id, userId));
+
 		request.user = user[0];
 
 		next();
