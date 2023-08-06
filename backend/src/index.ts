@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 
 import usersRouter from './routes/users';
 import groupsRouter from './routes/groups';
@@ -8,6 +9,7 @@ import authMiddleware from './utils/middleware';
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 const PORT = 3001;
 
