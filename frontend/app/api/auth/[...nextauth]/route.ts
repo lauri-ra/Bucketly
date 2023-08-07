@@ -1,6 +1,12 @@
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
+interface UserToken {
+	token: string;
+	id: number;
+	username: string;
+}
+
 export const authOptions: NextAuthOptions = {
 	providers: [
 		CredentialsProvider({
@@ -26,12 +32,31 @@ export const authOptions: NextAuthOptions = {
 
 				const user = await authResponse.json();
 
+				console.log('authData:', user);
+
 				return user;
 			},
 		}),
 	],
 	jwt: {
 		secret: process.env.JWT_SECRET,
+	},
+	session: { strategy: 'jwt' },
+	callbacks: {
+		async jwt({ token, user }) {
+			if (user) {
+				token.user = user;
+			}
+			return token;
+		},
+		async session({ session, token }) {
+			if (token) {
+				session.user = token.user as UserToken;
+
+				return session;
+			}
+			return session;
+		},
 	},
 };
 

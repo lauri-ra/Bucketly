@@ -9,9 +9,19 @@ export default async function Page() {
 		redirect('/api/auth/signin');
 	}
 
+	const id = session.user.id;
+	const response = await fetch(`http://localhost:3001/api/users/${id}`);
+	const user = await response.json();
+
 	return (
 		<div>
-			<h1 className='text-xl font-bold'>Profile</h1>
+			{!user ? (
+				<div>Loading</div>
+			) : (
+				<h1 className='text-xl'>
+					Hello, {user.length > 0 ? user[0].fullName : 'Unknown User'}
+				</h1>
+			)}
 		</div>
 	);
 }

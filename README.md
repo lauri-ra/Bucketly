@@ -6,32 +6,6 @@ Full Stack Open - Project Work
 
 Bucket list app
 
-### Features
-
-Some initial features. These will most likely change as the project progresses
-
-1. **User authentication and authorization:**
-   - [ ] User registration
-   - [ ] Login
-   - [ ] Password hashing and secure authentication (JWT or OAuth)
-   - [ ] User profile page (bucket lists, account info)
-2. **Bucket list management:**
-   - [ ] Create, update, delete goals
-   - [ ] Add users
-   - [ ] Compare items between friends or groups and find items that haven't been completed by individuals or the majority of the group.
-   - [ ] Find items that friend or the group like the most on average
-3. **Likes and recommendations:**
-   - [ ] Like / dislike goals
-   - [ ] Calculate average like/dislike ratio
-   - [ ] Recommend future plans on user preferences / popular choices
-4. **Tasks management:**
-   - [ ] Create, update, delete task lists and tasks
-5. **Group chat and notifications (real time):**
-   - [ ] web socket to handle real time group chat
-   - [ ] Feed / notifications (Mark added Rome, Carl completed "rent a car")
-6. **Permalinks and URL routing:**
-   - [ ] Permalink to a bucket list (visitors can view)
-
 ### Timetable
 
 | Day   | Hours | What did I do?                                                                                            |
@@ -51,4 +25,5 @@ Some initial features. These will most likely change as the project progresses
 | 4.8   | 1     | Worked on UI with Figma                                                                                   |
 | 5.8   | 1     | Started with frontend, Navbar, basic routes                                                               |
 | 6.8   | 3     | Figuring out auth with NextJS, studied & worked on NextAuth implementation, connecting back- and frontend |
-| Total | 19    |                                                                                                           |
+| 7.8   | 2     | Worked with auth callback functions to get the session data to pass correctly to server components        |
+| Total | 21    |                                                                                                           |

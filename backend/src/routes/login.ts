@@ -38,7 +38,7 @@ router.post('/', async (request, response) => {
 			process.env.JWT_SECRET as string
 		);
 
-		return response.json({ token, user });
+		return response.json({ token, id: user.id, username: user.username });
 	} catch (error) {
 		console.error('Error during login:', error);
 		return response.status(500).json({ error: 'Internal server error' });
