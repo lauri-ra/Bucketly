@@ -32,8 +32,6 @@ export const authOptions: NextAuthOptions = {
 
 				const user = await authResponse.json();
 
-				console.log('authData:', user);
-
 				return user;
 			},
 		}),
