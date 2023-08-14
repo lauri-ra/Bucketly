@@ -37,7 +37,7 @@ export default async function Navbar() {
 			) : (
 				<div className='mr-10 flex items-center gap-5'>
 					<Link
-						href='/api/auth/signin'
+						href='/signin'
 						className=' font-small text-base text-black hover:text-sky-500'
 					>
 						Log in

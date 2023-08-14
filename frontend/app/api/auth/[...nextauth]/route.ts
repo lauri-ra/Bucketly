@@ -8,6 +8,15 @@ interface UserToken {
 }
 
 export const authOptions: NextAuthOptions = {
+	session: {
+		strategy: 'jwt',
+	},
+	jwt: {
+		secret: process.env.JWT_SECRET,
+	},
+	pages: {
+		signIn: '/signin',
+	},
 	providers: [
 		CredentialsProvider({
 			name: 'Credentials',
@@ -16,7 +25,7 @@ export const authOptions: NextAuthOptions = {
 				password: { label: 'Password', type: 'password' },
 			},
 			async authorize(credentials) {
-				const authResponse = await fetch('http://localhost:3001/api/login', {
+				const authResponse = await fetch('/api/login', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
@@ -36,10 +45,6 @@ export const authOptions: NextAuthOptions = {
 			},
 		}),
 	],
-	jwt: {
-		secret: process.env.JWT_SECRET,
-	},
-	session: { strategy: 'jwt' },
 	callbacks: {
 		async jwt({ token, user }) {
 			if (user) {
