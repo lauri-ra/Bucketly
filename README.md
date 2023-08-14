@@ -26,4 +26,6 @@ Bucket list app
 | 5.8   | 1     | Started with frontend, Navbar, basic routes                                                               |
 | 6.8   | 3     | Figuring out auth with NextJS, studied & worked on NextAuth implementation, connecting back- and frontend |
 | 7.8   | 2     | Worked with auth callback functions to get the session data to pass correctly to server components        |
-| Total | 21    |                                                                                                           |
+| 14.8  | 1     | Created signup page with server action                                                                    |
+|       | 2.5   | Tried get custom signin page work with nextauth                                                           |
+| Total | 24.5  |                                                                                                           |
