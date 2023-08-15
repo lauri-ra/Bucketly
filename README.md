@@ -28,4 +28,5 @@ Bucket list app
 | 7.8   | 2     | Worked with auth callback functions to get the session data to pass correctly to server components        |
 | 14.8  | 1     | Created signup page with server action                                                                    |
 |       | 2.5   | Tried get custom signin page work with nextauth                                                           |
-| Total | 24.5  |                                                                                                           |
+| 15.8  | 2.5   | Fixed login, tried figure out how to get custom signout to function with NextAuth and backend             |
+| Total | 27    |                                                                                                           |
