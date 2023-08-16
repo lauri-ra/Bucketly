@@ -45,4 +45,8 @@ router.post('/', async (request, response) => {
 	}
 });
 
+router.get('/signout', (_request, response) => {
+	return response.json({ message: 'User succesfully signed out' });
+});
+
 export default router;

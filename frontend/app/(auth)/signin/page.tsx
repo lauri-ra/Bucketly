@@ -2,10 +2,12 @@
 
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 export default function SignIn() {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
+	const router = useRouter();
 
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
@@ -13,9 +15,10 @@ export default function SignIn() {
 		await signIn('credentials', {
 			username,
 			password,
-			redirect: true,
-			callbackUrl: '/',
+			redirect: false,
 		});
+
+		router.push('/');
 	};
 
 	return (
