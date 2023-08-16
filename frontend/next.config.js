@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+	experimental: {
+		serverActions: true,
+	},
 	async rewrites() {
-		console.log('doing rewrite stuff');
 		return [
 			// Exclude api routes that NextAuth requires
 			{

@@ -28,7 +28,7 @@ export default async function Navbar() {
 						Profile
 					</Link>
 					<Link
-						href='/api/auth/signout'
+						href='/signout'
 						className=' font-small text-base text-black hover:text-sky-500'
 					>
 						Sign out
