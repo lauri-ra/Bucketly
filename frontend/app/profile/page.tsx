@@ -6,11 +6,11 @@ export default async function Page() {
 	const session = await getServerSession(authOptions);
 
 	if (!session) {
-		redirect('/api/auth/signin');
+		redirect('/signin');
 	}
 
 	const id = session.user.id;
-	const response = await fetch(`http://localhost:3001/api/users/${id}`);
+	const response = await fetch(`${process.env.DEV_API}/users/${id}`);
 	const user = await response.json();
 
 	return (

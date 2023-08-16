@@ -1,16 +1,21 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	experimental: {
-		serverActions: true,
+	async rewrites() {
+		console.log('doing rewrite stuff');
+		return [
+			// Exclude api routes that NextAuth requires
+			{
+				source: '/api/auth/:path*',
+				destination: '/api/auth/:path*',
+			},
+			// Rest of API routes point to backend.
+			// TODO: This doesn't work with server components and fetch???
+			{
+				source: '/api/:slug*',
+				destination: `${process.env.DEV_API}`,
+			},
+		];
 	},
-	// async rewrites() {
-	// 	return [
-	// 		{
-	// 			source: '/api/:path*',
-	// 			destination: 'http://localhost:3001/api/:path*',
-	// 		},
-	// 	];
-	// },
 };
 
 module.exports = nextConfig;
