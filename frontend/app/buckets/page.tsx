@@ -1,6 +1,8 @@
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
 import { authOptions } from '../api/auth/[...nextauth]/route';
+import { Bucket } from '@/types';
+import Link from 'next/link';
 
 export default async function Page() {
 	const session = await getServerSession(authOptions);
@@ -17,8 +19,8 @@ export default async function Page() {
 			Authorization: `Bearer ${token}`,
 		},
 	});
-	const buckets = await response.json();
-	console.log('bucket', buckets);
+
+	const buckets: Bucket[] = await response.json();
 
 	return (
 		<div>
@@ -28,9 +30,9 @@ export default async function Page() {
 					<div>Loading...</div>
 				) : (
 					buckets.map((bucket) => (
-						<div key={bucket.id}>
+						<Link href={`/buckets/${bucket.id}`} key={bucket.id}>
 							{bucket.name}: {bucket.description}
-						</div>
+						</Link>
 					))
 				)}
 			</div>
