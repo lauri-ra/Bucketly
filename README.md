@@ -30,4 +30,5 @@ Bucket list app
 |       | 2.5   | Tried get custom signin page work with nextauth                                                           |
 | 15.8  | 2.5   | Fixed login, tried figure out how to get custom signout to function with NextAuth and backend             |
 | 16.8  | 1.5   | Figured out a fix to the signin & signout process with NextAuth + fetch routing                           |
-| Total | 28.5  |                                                                                                           |
+| 11.10  | 2.5   | Updates from previous month(s): sign-in page changes, created basic bucketlist & goals pages                           |
+| Total | 31  |                                                                                                           |
