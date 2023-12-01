@@ -27,10 +27,7 @@ router.get('/:bucketId', async (request, response) => {
 router.get('/user/:id', async (request, response) => {
 	const id = Number(request.params.id);
 
-	const result: Bucket[] = await db
-		.select()
-		.from(bucketlists)
-		.where(eq(bucketlists.id, id));
+	const result: Bucket[] = await db.select().from(bucketlists).where(eq(bucketlists.id, id));
 
 	if (result) {
 		response.json(result);
@@ -42,10 +39,7 @@ router.get('/user/:id', async (request, response) => {
 router.get('/group/:id', async (request, response) => {
 	const id = Number(request.params.id);
 
-	const result: Bucket[] = await db
-		.select()
-		.from(bucketlists)
-		.where(eq(bucketlists.id, id));
+	const result: Bucket[] = await db.select().from(bucketlists).where(eq(bucketlists.id, id));
 
 	if (result) {
 		response.json(result);
@@ -58,10 +52,7 @@ router.get('/group/:id', async (request, response) => {
 router.get('/:bucketId/goals', async (request, response) => {
 	const bucketId = Number(request.params.bucketId);
 
-	const result: Goal[] = await db
-		.select()
-		.from(goals)
-		.where(eq(goals.bucket_id, bucketId));
+	const result: Goal[] = await db.select().from(goals).where(eq(goals.bucket_id, bucketId));
 
 	response.json(result);
 });
@@ -69,10 +60,7 @@ router.get('/:bucketId/goals', async (request, response) => {
 router.get('/:bucketId/goals/:goalId', async (request, response) => {
 	const goalId = Number(request.params.goalId);
 
-	const result: Goal[] = await db
-		.select()
-		.from(goals)
-		.where(eq(goals.id, goalId));
+	const result: Goal[] = await db.select().from(goals).where(eq(goals.id, goalId));
 
 	response.json(result[0]);
 });
@@ -84,9 +72,7 @@ router.post('/', async (request, response) => {
 	console.log(body);
 
 	if (!body.name) {
-		return response
-			.status(400)
-			.json({ error: 'Bucket list does not have a name' });
+		return response.status(400).json({ error: 'Bucket list does not have a name' });
 	}
 
 	if (!body.user_id && !body.group_id) {

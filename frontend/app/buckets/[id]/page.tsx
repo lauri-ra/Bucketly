@@ -4,6 +4,8 @@ import { getServerSession } from 'next-auth';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
+import CreateGoalForm from '@/app/components/CreateGoalForm';
+
 export default async function Page({ params }: { params: { id: string } }) {
 	const session = await getServerSession(authOptions);
 
@@ -47,11 +49,7 @@ export default async function Page({ params }: { params: { id: string } }) {
 				)}
 			</div>
 
-			<Link href='/'>
-				<div className='mb-2 mt-2 w-1/4 flex-col rounded-md border border-black bg-neutral-200 px-5 py-2.5 shadow transition ease-in-out hover:scale-105 hover:bg-sky-300'>
-					Add a new goal
-				</div>
-			</Link>
+			<CreateGoalForm bucketId={params.id}></CreateGoalForm>
 		</div>
 	);
 }
