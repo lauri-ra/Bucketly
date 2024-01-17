@@ -23,11 +23,11 @@ router.get('/:bucketId', async (request, response) => {
 	response.json(result[0]);
 });
 
-// Routes for getting bucketlist by its group or user
+// Routes for getting bucketlist by user id
 router.get('/user/:id', async (request, response) => {
 	const id = Number(request.params.id);
 
-	const result: Bucket[] = await db.select().from(bucketlists).where(eq(bucketlists.id, id));
+	const result: Bucket[] = await db.select().from(bucketlists).where(eq(bucketlists.user_id, id));
 
 	if (result) {
 		response.json(result);

@@ -36,3 +36,37 @@ export async function createGoal(bucketId: string, formData: FormData) {
 		console.log('error with adding a goal');
 	}
 }
+
+export async function createBucketList(formData: FormData) {
+	const session = await getServerSession(authOptions);
+
+	if (!session) {
+		redirect('/signin');
+	}
+
+	const token = session.user.token;
+	const userId = session.user.id;
+
+	const bucketName = formData.get('name');
+	const bucketDesc = formData.get('description');
+
+	try {
+		const newBucketList = {
+			name: bucketName,
+			description: bucketDesc,
+			user_id: userId,
+			group_id: null,
+		};
+
+		await fetch(`${process.env.DEV_API}/buckets`, {
+			method: 'POST',
+			headers: {
+				Authorization: `Bearer ${token}`,
+				'Content-type': 'application/json',
+			},
+			body: JSON.stringify(newBucketList),
+		});
+	} catch {
+		console.log('error with creating a new list');
+	}
+}

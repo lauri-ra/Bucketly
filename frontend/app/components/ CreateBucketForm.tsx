@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { createBucketList } from '../actions';
 
 export function CreateBucketForm() {
 	const [visible, setVisible] = useState(false);
@@ -24,7 +25,7 @@ export function CreateBucketForm() {
 			</div>
 
 			<div style={showWhenVisible}>
-				<form>
+				<form action={createBucketList}>
 					<input
 						name='name'
 						type='text'
