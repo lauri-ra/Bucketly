@@ -69,8 +69,6 @@ router.get('/:bucketId/goals/:goalId', async (request, response) => {
 router.post('/', async (request, response) => {
 	const body = request.body as Bucket;
 
-	console.log(body);
-
 	if (!body.name) {
 		return response.status(400).json({ error: 'Bucket list does not have a name' });
 	}
@@ -84,6 +82,30 @@ router.post('/', async (request, response) => {
 	const newBucketList = await db.insert(bucketlists).values(body).returning();
 
 	return response.status(201).json(newBucketList);
+});
+
+// Route for deleting a bucketlist
+router.delete('/:bucketId', async (request, response) => {
+	const bucketId = Number(request.params.bucketId);
+
+	if (!bucketId) {
+		return response.status(400).json({ error: 'Bucket list id missing' });
+	}
+
+	// SQL transaction, where we make sure each goal related to the bucketlist
+	// and the list itself is removed succesfully
+	try {
+		await db.transaction(async (tx) => {
+			await tx.delete(goals).where(eq(goals.bucket_id, bucketId));
+			await tx.delete(bucketlists).where(eq(bucketlists.id, bucketId));
+			return;
+		});
+
+		return response.status(204).end();
+	} catch (error) {
+		console.log(error);
+		return response.status(500).json({ error: 'Internal server error' });
+	}
 });
 
 // Route for adding a goal to a bucket list
