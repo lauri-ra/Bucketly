@@ -30,33 +30,38 @@ export function CreateGoalForm({ bucketId }: GoalFormProps) {
 				</button>
 			</div>
 
-			<div style={showWhenVisible}>
-				<form action={createGoalWithId}>
+			<div
+				style={showWhenVisible}
+				className='w-1/4 rounded-md border border-sky-300 py-5'
+			>
+				<form action={createGoalWithId} className='ml-2'>
+					<div className='pb-2 text-xl underline'>Create new goal</div>
 					<input
 						name='name'
 						type='text'
-						placeholder='goal name'
+						placeholder='Goal name'
 						className='my-2 block w-60 rounded border bg-neutral-200 p-2 text-left text-gray-600 outline-none drop-shadow-md hover:border-lime-500 focus:border-lime-500'
 					/>
-					<input
+					<select
 						name='status'
-						type='text'
-						placeholder='goal status'
-						className='my-2 block w-60 rounded border bg-neutral-200 p-2 text-left text-gray-600 outline-none drop-shadow-md hover:border-lime-500 focus:border-lime-500'
-					/>
+						className='my-2 block w-60 rounded border p-2 text-left outline-none drop-shadow-md'
+					>
+						<option value='In progress'>In progress</option>
+						<option value='Completed'>Completed</option>
+					</select>
 					<button
 						type='submit'
-						className='mb-2 mt-2 w-1/4 flex-col rounded-md border border-black bg-neutral-200 px-5 py-2.5 shadow transition ease-in-out hover:scale-105 hover:bg-sky-300'
+						className='my-2 mr-2 w-32 rounded-md border border-black bg-neutral-200 px-2 py-2 text-left shadow transition ease-in-out hover:scale-105 hover:bg-sky-300'
 					>
 						Create goal
 					</button>
+					<button
+						className='my-2 ml-2 w-32 rounded-md border border-black bg-neutral-200 px-2 py-2 text-left shadow transition ease-in-out hover:scale-105 hover:bg-red-300'
+						onClick={toggleVisibility}
+					>
+						Cancel
+					</button>
 				</form>
-				<button
-					className='mb-2 mt-2 w-1/4 flex-col rounded-md border border-black bg-neutral-200 px-5 py-2.5 shadow transition ease-in-out hover:scale-105 hover:bg-sky-300'
-					onClick={toggleVisibility}
-				>
-					Cancel
-				</button>
 			</div>
 		</div>
 	);
