@@ -1,6 +1,10 @@
 import { InferModel } from 'drizzle-orm';
-import { integer, pgTable, serial, text, varchar } from 'drizzle-orm/pg-core';
+import { integer, pgEnum, pgTable, serial, text, varchar } from 'drizzle-orm/pg-core';
 
+// Variable types
+export const statusEnum = pgEnum('status', ['In progress', 'Completed']);
+
+// Table schemas
 export const users = pgTable('users', {
 	id: serial('id').primaryKey(),
 	username: varchar('username', { length: 255 }).notNull(),
@@ -30,7 +34,7 @@ export const bucketlists = pgTable('bucketlists', {
 export const goals = pgTable('goals', {
 	id: serial('id').primaryKey(),
 	name: varchar('name', { length: 255 }).notNull(),
-	status: varchar('status', { length: 255 }).notNull(),
+	status: statusEnum('status').notNull(),
 	bucket_id: integer('bucket_id')
 		.references(() => bucketlists.id)
 		.notNull(),
@@ -42,6 +46,7 @@ export const tasks = pgTable('tasks', {
 	goal_id: integer('goal_id').references(() => goals.id),
 });
 
+// Schema types for TS
 export type User = InferModel<typeof users, 'select'>;
 export type GroupUser = Omit<User, 'password'>;
 export type Groups = InferModel<typeof groups, 'select'>;
